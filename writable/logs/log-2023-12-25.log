@@ -1,0 +1,72 @@
+CRITICAL - 2023-12-25 17:22:58 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH/CodeIgniter.php on line 246.
+ 1 SYSTEMPATH/CodeIgniter.php(246): CodeIgniter\Exceptions\FrameworkException::forMissingExtension()
+ 2 SYSTEMPATH/CodeIgniter.php(210): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 ROOTPATH/spark(88): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-12-25 17:22:58 --> Uncaught Error: Class 'Locale' not found in /home/asman/Documents/Project_Skripsi/programSkripsi/system/I18n/TimeTrait.php:74
+Stack trace:
+#0 /home/asman/Documents/Project_Skripsi/programSkripsi/system/I18n/TimeTrait.php(115): CodeIgniter\I18n\Time->__construct()
+#1 /home/asman/Documents/Project_Skripsi/programSkripsi/system/HTTP/ResponseTrait.php(468): CodeIgniter\I18n\Time::now()
+#2 /home/asman/Documents/Project_Skripsi/programSkripsi/system/HTTP/ResponseTrait.php(446): CodeIgniter\HTTP\Response->sendHeaders()
+#3 /home/asman/Documents/Project_Skripsi/programSkripsi/system/Debug/ExceptionHandler.php(78): CodeIgniter\HTTP\Response->send()
+#4 /home/asman/Documents/Project_Skripsi/programSkripsi/system/Debug/Exceptions.php(147): CodeIgniter\Debug\ExceptionHandler->handle()
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler()
+#6 {main}
+  thrown
+【Previous Exception】
+CodeIgniter\Exceptions\FrameworkException
+The framework needs the following extension(s) installed and loaded: intl.
+#0 /home/asman/Documents/Project_Skripsi/programSkripsi/system/CodeIgniter.php(246): CodeIgniter\Exceptions\FrameworkException::forMissingExtension()
+#1 /home/asman/Documents/Project_Skripsi/programSkripsi/system/CodeIgniter.php(210): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+#2 /home/asman/Documents/Project_Skripsi/programSkripsi/spark(88): CodeIgniter\CodeIgniter->initialize()
+#3 {main}
+in SYSTEMPATH/I18n/TimeTrait.php on line 74.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-12-25 17:38:45 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH/CodeIgniter.php on line 246.
+ 1 SYSTEMPATH/CodeIgniter.php(246): CodeIgniter\Exceptions\FrameworkException::forMissingExtension()
+ 2 SYSTEMPATH/CodeIgniter.php(210): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 ROOTPATH/spark(88): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-12-25 17:38:45 --> Uncaught Error: Class 'Locale' not found in /home/asman/Documents/Project_Skripsi/programSkripsi/system/I18n/TimeTrait.php:74
+Stack trace:
+#0 /home/asman/Documents/Project_Skripsi/programSkripsi/system/I18n/TimeTrait.php(115): CodeIgniter\I18n\Time->__construct()
+#1 /home/asman/Documents/Project_Skripsi/programSkripsi/system/HTTP/ResponseTrait.php(468): CodeIgniter\I18n\Time::now()
+#2 /home/asman/Documents/Project_Skripsi/programSkripsi/system/HTTP/ResponseTrait.php(446): CodeIgniter\HTTP\Response->sendHeaders()
+#3 /home/asman/Documents/Project_Skripsi/programSkripsi/system/Debug/ExceptionHandler.php(78): CodeIgniter\HTTP\Response->send()
+#4 /home/asman/Documents/Project_Skripsi/programSkripsi/system/Debug/Exceptions.php(147): CodeIgniter\Debug\ExceptionHandler->handle()
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler()
+#6 {main}
+  thrown
+【Previous Exception】
+CodeIgniter\Exceptions\FrameworkException
+The framework needs the following extension(s) installed and loaded: intl.
+#0 /home/asman/Documents/Project_Skripsi/programSkripsi/system/CodeIgniter.php(246): CodeIgniter\Exceptions\FrameworkException::forMissingExtension()
+#1 /home/asman/Documents/Project_Skripsi/programSkripsi/system/CodeIgniter.php(210): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+#2 /home/asman/Documents/Project_Skripsi/programSkripsi/spark(88): CodeIgniter\CodeIgniter->initialize()
+#3 {main}
+in SYSTEMPATH/I18n/TimeTrait.php on line 74.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-12-25 17:39:46 --> The framework needs the following extension(s) installed and loaded: intl.
+in SYSTEMPATH/CodeIgniter.php on line 246.
+ 1 SYSTEMPATH/CodeIgniter.php(246): CodeIgniter\Exceptions\FrameworkException::forMissingExtension()
+ 2 SYSTEMPATH/CodeIgniter.php(210): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+ 3 ROOTPATH/spark(88): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-12-25 17:39:46 --> Uncaught Error: Class 'Locale' not found in /home/asman/Documents/Project_Skripsi/programSkripsi/system/I18n/TimeTrait.php:74
+Stack trace:
+#0 /home/asman/Documents/Project_Skripsi/programSkripsi/system/I18n/TimeTrait.php(115): CodeIgniter\I18n\Time->__construct()
+#1 /home/asman/Documents/Project_Skripsi/programSkripsi/system/HTTP/ResponseTrait.php(468): CodeIgniter\I18n\Time::now()
+#2 /home/asman/Documents/Project_Skripsi/programSkripsi/system/HTTP/ResponseTrait.php(446): CodeIgniter\HTTP\Response->sendHeaders()
+#3 /home/asman/Documents/Project_Skripsi/programSkripsi/system/Debug/ExceptionHandler.php(78): CodeIgniter\HTTP\Response->send()
+#4 /home/asman/Documents/Project_Skripsi/programSkripsi/system/Debug/Exceptions.php(147): CodeIgniter\Debug\ExceptionHandler->handle()
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler()
+#6 {main}
+  thrown
+【Previous Exception】
+CodeIgniter\Exceptions\FrameworkException
+The framework needs the following extension(s) installed and loaded: intl.
+#0 /home/asman/Documents/Project_Skripsi/programSkripsi/system/CodeIgniter.php(246): CodeIgniter\Exceptions\FrameworkException::forMissingExtension()
+#1 /home/asman/Documents/Project_Skripsi/programSkripsi/system/CodeIgniter.php(210): CodeIgniter\CodeIgniter->resolvePlatformExtensions()
+#2 /home/asman/Documents/Project_Skripsi/programSkripsi/spark(88): CodeIgniter\CodeIgniter->initialize()
+#3 {main}
+in SYSTEMPATH/I18n/TimeTrait.php on line 74.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

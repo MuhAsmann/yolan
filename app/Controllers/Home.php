@@ -40,6 +40,17 @@ class Home extends BaseController
         $aktifitas_fisik = $this->request->getPost('aktifitas_fisik');
 
         $bmi = $beratBadan / (($tinggiBadan / 100) ** 2);
+        
+        function calculateBMR($gender, $weight, $height, $age) {
+            if ($gender == 'pria') {
+                return 88.362 + (13.397 * $weight) + (4.799 * $height) - (5.677 * $age);
+            } elseif ($gender == 'wanita') {
+                return 447.593 + (9.247 * $weight) + (3.098 * $height) - (4.330 * $age);
+            } else {
+                return null; // Menangani gender selain male atau female
+            }
+        }
+        $bmr = calculateBMR($gender, $beratBadan, $tinggiBadan, $usia);
 
         $rules = [
             ['k1', 'k2', 'k3', 'a3'],
@@ -56,40 +67,74 @@ class Home extends BaseController
             ['k1', 'k8', 'k9', 'k13', 'k14', 'k15', 'a5']
         ];
 
-        $aktivitas = 'Unknown';
-        $faktorAktivitas = 1.0;
-
-        foreach ($rules as $rule) {
-            if (count(array_diff($rule, $aktifitas_fisik)) == 0) {
-                $aktivitas = end($rule);
-                break;
+        function getValueForConditions($rules, $conditions) {
+            $matchingRules = array_filter($rules, function ($rule) use ($conditions) {
+                return array_slice($rule, 0, count($conditions)) == $conditions && count($rule) == count($conditions) + 1;
+            });
+        
+            if (!empty($matchingRules)) {
+                $lastRule = end($matchingRules);
+                return end($lastRule);
             }
+        
+            return null; // Mengembalikan null jika tidak ada aturan yang sesuai
         }
 
-        switch ($aktivitas) {
+        function classifyBMI($bmi) {
+            // Menentukan status BMI berdasarkan rentang tertentu
+            if ($bmi < 18.5) {
+                return 'Kurus (Underweight)';
+            } elseif ($bmi >= 18.5 && $bmi < 24.9) {
+                return 'Normal (Normal Weight)';
+            } elseif ($bmi >= 25 && $bmi < 29.9) {
+                return 'Berlebihan berat badan (Overweight)';
+            } elseif ($bmi >= 30) {
+                return 'Obesitas (Obese)';
+            } else {
+                return 'BMI Tidak Valid (Invalid BMI)'; // Menangani nilai yang tidak valid
+            }
+        }
+        
+        $aktivitas = getValueForConditions($rules, $aktifitas_fisik);
+
+        $faktorAktivitas = 1.0;
+
+        switch (strval($aktivitas)) {
             case 'a1':
+                if($gender == 'pria'){
+                    $faktorAktivitas = 1.3;
+                }
                 $faktorAktivitas = 1.3;
                 break;
             case 'a2':
-                $faktorAktivitas = 1.56;
+                if($gender == 'pria'){
+                    $faktorAktivitas = 1.56;
+                }
+                $faktorAktivitas = 1.55;
                 break;
             case 'a3':
-                $faktorAktivitas = 1.76;
+                if($gender == 'pria'){
+                    $faktorAktivitas = 1.76;
+                }
+                $faktorAktivitas = 1.70;
                 break;
             case 'a4':
-                $faktorAktivitas = 2.1;
+                if($gender == 'pria'){
+                    $faktorAktivitas = 2.1;
+                }
+                $faktorAktivitas = 2.0;
                 break;
             case 'a5':
-                $faktorAktivitas = 2.35;
+                if($gender == 'pria'){
+                    $faktorAktivitas = 2.35;
+                }
+                $faktorAktivitas = 2.30;
                 break;
         }
-        // Debugging
-        echo 'Faktor Aktivitas: ' . $faktorAktivitas . '<br>';
+        
+        $dailyCalories =  $bmr * $faktorAktivitas;
 
-        $jumlahKalori = $bmi * $faktorAktivitas;
-
-        // Debugging
-        echo 'Jumlah Kalori: ' . $jumlahKalori . '<br>';
+        $status = classifyBMI($bmi);
 
         $data = [
             'nama' => $this->request->getPost('name'),
@@ -98,9 +143,10 @@ class Home extends BaseController
             'berat_badan' => $beratBadan,
             'gender' => $gender,
             'aktifitas' => implode(", ", $aktifitas_fisik),
-            'kalori' => $jumlahKalori,
-            'defisit' => $jumlahKalori - 500,
-            'surplus' => $jumlahKalori + 500,
+            'kalori' => $dailyCalories,
+            'defisit' => $dailyCalories - 500,
+            'surplus' => $dailyCalories + 500,
+            'status' => $status
         ];
 
         $pasienModel = new Pasien();

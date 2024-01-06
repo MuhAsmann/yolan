@@ -250,63 +250,63 @@
 							<label for="aktifitas">Aktifitas:</label><br>
 
 							<label class="form-check">
-								<input type="checkbox" id="jalan_kaki" name="aktifitas_fisik[]" value="jalan_kaki"> Jalan Kaki
+								<input type="checkbox" id="jalan_kaki" name="aktifitas_fisik[]" value="k1"> Jalan Kaki
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mencuci" name="aktifitas_fisik[]" value="mencuci"> Mencuci
+								<input type="checkbox" id="mencuci" name="aktifitas_fisik[]" value="k2"> Mencuci
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="membersihkan_rumah" name="aktifitas_fisik[]" value="membersihkan_rumah"> Membersihkan rumah
+								<input type="checkbox" id="membersihkan_rumah" name="aktifitas_fisik[]" value="k3"> Membersihkan rumah
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengendarai_kendaraan" name="aktifitas_fisik[]" value="mengendarai_kendaraan"> Mengendarai Kendaraan
+								<input type="checkbox" id="mengendarai_kendaraan" name="aktifitas_fisik[]" value="k4"> Mengendarai Kendaraan
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="berbelanja" name="aktifitas_fisik[]" value="berbelanja"> Berbelanja
+								<input type="checkbox" id="berbelanja" name="aktifitas_fisik[]" value="k5"> Berbelanja
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="aktivitas_dalam_ruangan" name="aktifitas_fisik[]" value="aktivitas_dalam_ruangan"> Aktivitas Dalam Duangan
+								<input type="checkbox" id="aktivitas_dalam_ruangan" name="aktifitas_fisik[]" value="k6"> Aktivitas Dalam Duangan
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="traveling" name="aktifitas_fisik[]" value="traveling"> Traveling
+								<input type="checkbox" id="traveling" name="aktifitas_fisik[]" value="k7"> Traveling
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengetik" name="aktifitas_fisik[]" value="mengetik"> Mengetik
+								<input type="checkbox" id="mengetik" name="aktifitas_fisik[]" value="k8"> Mengetik
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="menggunakan_komputer" name="aktifitas_fisik[]" value="menggunakan_komputer"> Menggunakan Komputer
+								<input type="checkbox" id="menggunakan_komputer" name="aktifitas_fisik[]" value="k9"> Menggunakan Komputer
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengajar" name="aktifitas_fisik[]" value="mengajar"> Mengajar
+								<input type="checkbox" id="mengajar" name="aktifitas_fisik[]" value="k10"> Mengajar
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="aktivitas_diluar_ruangan" name="aktifitas_fisik[]" value="aktivitas_diluar_ruangan"> Aktifitas diluar Ruangan
+								<input type="checkbox" id="aktivitas_diluar_ruangan" name="aktifitas_fisik[]" value="k11"> Aktifitas diluar Ruangan
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengangkat_beban" name="aktifitas_fisik[]" value="mengangkat_beban"> Mengangkat Beban
+								<input type="checkbox" id="mengangkat_beban" name="aktifitas_fisik[]" value="k12"> Mengangkat Beban
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="melakukan_pekerjaan_konstruksi" name="aktifitas_fisik[]" value="melakukan_pekerjaan_konstruksi"> melakukan Pekerjaan Kontruksi
+								<input type="checkbox" id="melakukan_pekerjaan_konstruksi" name="aktifitas_fisik[]" value="k13"> melakukan Pekerjaan Kontruksi
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="berkebun" name="aktifitas_fisik[]" value="berkebun"> Berkebun
+								<input type="checkbox" id="berkebun" name="aktifitas_fisik[]" value="k14"> Berkebun
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="bertani" name="aktifitas_fisik[]" value="bertani"> Bertani
+								<input type="checkbox" id="bertani" name="aktifitas_fisik[]" value="k15"> Bertani
 							</label>
 						</div>
 
@@ -324,6 +324,7 @@
 									<th>Berat Badan (kg)</th>
 									<th>Gender</th>
 									<th>Aktifitas</th>
+									<th>Status</th>
 									<th>Maintenance</th>
 									<th>Defisit</th>
 									<th>Surplus</th>
@@ -349,7 +350,7 @@
 											}
 											?>
 										</td>
-
+										<td style="padding: 10px;"><?= $row['status']; ?></td>
 										<td style="padding: 10px;"><?= $row['kalori']; ?></td>
 										<td style="padding: 10px;"><?= $row['defisit']; ?></td>
 										<td style="padding: 10px;"><?= $row['surplus']; ?></td>
