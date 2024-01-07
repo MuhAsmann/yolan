@@ -250,63 +250,63 @@
 							<label for="aktifitas">Aktifitas:</label><br>
 
 							<label class="form-check">
-								<input type="checkbox" id="jalan_kaki" name="aktifitas_fisik[]" value="k1"> Jalan Kaki
+								<input type="checkbox" id="jalan_kaki" name="aktifitas_fisik[]" value="200"> Duduk
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mencuci" name="aktifitas_fisik[]" value="k2"> Mencuci
+								<input type="checkbox" id="mencuci" name="aktifitas_fisik[]" value="147"> Berdiri
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="membersihkan_rumah" name="aktifitas_fisik[]" value="k3"> Membersihkan rumah
+								<input type="checkbox" id="membersihkan_rumah" name="aktifitas_fisik[]" value="118"> Mengemudi
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengendarai_kendaraan" name="aktifitas_fisik[]" value="k4"> Mengendarai Kendaraan
+								<input type="checkbox" id="mengendarai_kendaraan" name="aktifitas_fisik[]" value="34"> Mengetik
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="berbelanja" name="aktifitas_fisik[]" value="k5"> Berbelanja
+								<input type="checkbox" id="berbelanja" name="aktifitas_fisik[]" value="117"> Menyapu
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="aktivitas_dalam_ruangan" name="aktifitas_fisik[]" value="k6"> Aktivitas Dalam Duangan
+								<input type="checkbox" id="aktivitas_dalam_ruangan" name="aktifitas_fisik[]" value="147"> Memasak
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="traveling" name="aktifitas_fisik[]" value="k7"> Traveling
+								<input type="checkbox" id="traveling" name="aktifitas_fisik[]" value="184"> Membersihkan Rumah
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengetik" name="aktifitas_fisik[]" value="k8"> Mengetik
+								<input type="checkbox" id="mengetik" name="aktifitas_fisik[]" value="169"> Berbelanja
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="menggunakan_komputer" name="aktifitas_fisik[]" value="k9"> Menggunakan Komputer
+								<input type="checkbox" id="menggunakan_komputer" name="aktifitas_fisik[]" value="220"> Menyetrika
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengajar" name="aktifitas_fisik[]" value="k10"> Mengajar
+								<input type="checkbox" id="mengajar" name="aktifitas_fisik[]" value="225"> Jalan Kaki
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="aktivitas_diluar_ruangan" name="aktifitas_fisik[]" value="k11"> Aktifitas diluar Ruangan
+								<input type="checkbox" id="aktivitas_diluar_ruangan" name="aktifitas_fisik[]" value="147"> Mengajar
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="mengangkat_beban" name="aktifitas_fisik[]" value="k12"> Mengangkat Beban
+								<input type="checkbox" id="mengangkat_beban" name="aktifitas_fisik[]" value="300"> Bersepeda
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="melakukan_pekerjaan_konstruksi" name="aktifitas_fisik[]" value="k13"> melakukan Pekerjaan Kontruksi
+								<input type="checkbox" id="melakukan_pekerjaan_konstruksi" name="aktifitas_fisik[]" value="450"> Mendaki
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="berkebun" name="aktifitas_fisik[]" value="k14"> Berkebun
+								<input type="checkbox" id="berkebun" name="aktifitas_fisik[]" value="330"> Berkebun
 							</label>
 
 							<label class="form-check">
-								<input type="checkbox" id="bertani" name="aktifitas_fisik[]" value="k15"> Bertani
+								<input type="checkbox" id="bertani" name="aktifitas_fisik[]" value="350"> Melakukan Pkerjaan Konstruksi 
 							</label>
 						</div>
 
