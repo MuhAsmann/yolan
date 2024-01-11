@@ -48,7 +48,7 @@
 						<ul class="list-unstyled">
 							<li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
 							<li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Settings</a></li>
-							<li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+							<li class="list-group-item"><a href="/logout"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
 						</ul>
 					</div>
 				</div>
@@ -83,7 +83,6 @@
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
 					<div class="search-bar">
 						<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
 						<button type="button" class="close" aria-label="Close">
@@ -95,7 +94,6 @@
 			<ul class="navbar-nav ml-auto">
 				<li>
 					<div class="dropdown">
-						<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
 						<div class="dropdown-menu dropdown-menu-right notification">
 							<div class="noti-head">
 								<h6 class="d-inline-block m-b-0">Notifications</h6>
@@ -163,15 +161,12 @@
 							<div class="pro-head">
 								<img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
 								<span>John Doe</span>
-								<a href="auth-signin.html" class="dud-logout" title="Logout">
-									<i class="feather icon-log-out"></i>
-								</a>
-							</div>
-							<ul class="pro-body">
-								<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-								<li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-								<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-							</ul>
+								<form action="/logout" method="post" class="dud-logout" title="Logout">
+									<button type="submit" style="border: none; background-color: transparent; cursor: pointer;">
+										<i class="feather icon-log-out"></i>
+									</button>
+								</form>
+							</div>	
 						</div>
 					</div>
 				</li>
@@ -204,7 +199,7 @@
 			<!-- [ Main Content ] start -->
 			<div class="container card">
 				<div class="container-fluid">
-					<div class="row">
+					<div class="row mt-4">
 						<div class="col-lg-4 col-md-4">
 							<?php $message = session()->getFlashdata('message'); ?>
 							<?php $message_type = session()->getFlashdata('message_type'); ?>
@@ -314,14 +309,14 @@
 					</form>
 
 					<?php if (isset($pasien) && count($pasien) > 0) : ?>
-						<table class="table mt-4 overflow-scroll">
+						<table class="table mt-2">
 							<thead>
 								<tr>
 									<th>No</th>
 									<th>Nama</th>
 									<th>Umur</th>
-									<th>Tinggi Badan (cm)</th>
-									<th>Berat Badan (kg)</th>
+									<th>TB (cm)</th>
+									<th>BB (kg)</th>
 									<th>Gender</th>
 									<th>Aktifitas</th>
 									<th>Status</th>
