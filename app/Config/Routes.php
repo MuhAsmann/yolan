@@ -14,4 +14,5 @@ $routes->get('/logout', 'Home::logout');
 $routes->get('/hapus/(:num)', 'Home::hapus/$1');
 $routes->post('/search', 'Home::search');
 $routes->get('/search', 'Home::index');
-
+$routes->get('/put/(:num)', 'Home::put/$1');
+$routes->post('/update/(:num)', 'Home::update/$1');
