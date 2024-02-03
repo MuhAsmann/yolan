@@ -30,63 +30,63 @@
 	<?php 
 		$checkBoxs = [
 			[
-				"value" => 1,
+				"value" => 200,
 				"title" => "duduk"
 			],
 			[
-				"value" => 2,
+				"value" => 147,
 				"title" => "berdiri"
 			],
 			[
-				"value" => 3,
+				"value" => 118,
 				"title" => "mengemudi"
 			],
 			[
-				"value" => 4,
+				"value" => 34,
 				"title" => "mengetik"
 			],
 			[
-				"value" => 5,
+				"value" => 117,
 				"title" => "menyapu"
 			],
 			[
-				"value" => 6,
+				"value" => 147,
 				"title" => "memasak"
 			],
 			[
-				"value" => 7,
+				"value" => 184,
 				"title" => "bersikan rumah"
 			],
 			[
-				"value" => 8,
+				"value" => 169,
 				"title" => "berbelanja"
 			],
 			[
-				"value" => 9,
+				"value" => 220,
 				"title" => "menyetrika"
 			],
 			[
-				"value" => 10,
+				"value" => 225,
 				"title" => "jalan kaki"
 			],
 			[
-				"value" => 11,
+				"value" => 147,
 				"title" => "mengajar"
 			],
 			[
-				"value" => 12,
+				"value" => 300,
 				"title" => "bersepeda"
 			],
 			[
-				"value" => 13,
+				"value" => 450,
 				"title" => "mendaki"
 			],
 			[
-				"value" => 14,
+				"value" => 330,
 				"title" => "berkebun"
 			],
 			[
-				"value" => 15,
+				"value" => 350,
 				"title" => "kerja kontruksi"
 			],
 		]
