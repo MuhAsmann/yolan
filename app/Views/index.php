@@ -96,65 +96,64 @@
     <div class="min-h-screen bg-secondary">
         <div class="h-[186px] bg-primary px-2 lg:px-16">
             <div class="w-full flex justify-between pt-[54px] pb-[26px]">
-                <h1 class="text-3xl lg:text-5xl font-bold text-white">Sistem Pakar yaitu</h1>
+                <h1 class="text-3xl lg:text-5xl font-bold text-white">Sistem Pakar BMI</h1>
                 <form action="/logout" method="post" class="dud-logout" title="Logout">
                     <button>
                         <img src="assets/logoutIcon.svg" alt="logout" type="submit"> </button>
                 </form>
             </div>
 
-
-            <form action="<?= base_url('/save') ?>" method="post"
-                class="w-full bg-white drop-shadow-lg py-6 lg:py-[69px] relative px-6 lg:px-[42px] grid grid-cols-1 lg:grid-cols-12 rounded-lg lg:gap-x-[27px] gap-y-6 lg:gap-y-16 justify-center">
+            <form action="<?= base_url('/save') ?>" method="post" id="form"
+                class="w-full bg-white drop-shadow-lg py-6 lg:py-[69px] px-6 lg:px-[42px] grid grid-cols-1 lg:grid-cols-12 rounded-lg lg:gap-x-[27px] gap-y-6 lg:gap-y-16 justify-center">
                 <div class="col-lg-4 col-md-4 absolute top-3 left-10">
                     <?php
-    $message = session()->getFlashdata('message');
-    $message_type = session()->getFlashdata('message_type');
+                        $message = session()->getFlashdata('message');
+                        $message_type = session()->getFlashdata('message_type');
 
-    if ($message) :
-        ?>
-                    <div
-                        class="max-w-fit max-h-fit text-white px-10 py-2 rounded-lg <?= strpos($message_type, 'success') !== false ? 'bg-primary' : 'bg-customred' ?>">
-                        <?= $message ?>
-                    </div>
+                        if ($message) :
+                            ?>
+                                        <div
+                                            class="max-w-fit max-h-fit text-white px-10 py-2 rounded-lg <?= strpos($message_type, 'success') !== false ? 'bg-primary' : 'bg-customred' ?>">
+                                            <?= $message ?>
+                                        </div>
 
-                    <?php
-        // Menunggu selama 3 detik dan kemudian me-refresh halaman
-        header("refresh: 3");
-    endif;
-    ?>
+                                        <?php
+                            // Menunggu selama 3 detik dan kemudian me-refresh halaman
+                            header("refresh: 3");
+                        endif;
+                    ?>
                 </div>
                 <div class="col-span-1 lg:col-span-4">
                     <input type="text"
                         class="w-full bg-secondary text-primary font-bold outline-none placeholder:font-bold placeholder:text-primary px-6 pt-[26px] pb-[24px] drop-shadow-lg rounded-lg"
-                        placeholder="Nama" value="" name="name" required>
+                        placeholder="Nama" value="" name="name" id="name" required>
                 </div>
                 <div
                     class="col-span-1 lg:col-span-4 flex items-center gap-x-2 drop-shadow-lg px-6 pt-[26px] pb-[24px] rounded-lg w-full bg-secondary">
                     <input type="number"
                         class="w-full bg-transparent text-primary font-bold outline-none placeholder:font-bold placeholder:text-primary"
-                        placeholder="Umur" value="" name="umur" required>
+                        placeholder="Umur" value="" name="umur" id="umur" required>
                     <p class="text-xs text-third font-bold">Tahun</p>
                 </div>
                 <div
                     class="col-span-1 lg:col-span-4 flex items-center gap-x-2 drop-shadow-lg px-6 pt-[26px] pb-[24px] rounded-lg w-full bg-secondary">
                     <input type="number"
                         class="w-full bg-transparent text-primary font-bold outline-none placeholder:font-bold placeholder:text-primary"
-                        placeholder="Tinggi Badan" value="" name="tinggi_badan" required>
+                        placeholder="Tinggi Badan" value="" name="tinggi_badan" id="tinggi_badan" required>
                     <p class="text-xs text-third font-bold">Cm</p>
                 </div>
                 <div
                     class="col-span-1 lg:col-span-6 flex items-center gap-x-2 drop-shadow-lg px-6 pt-[26px] pb-[24px] rounded-lg w-full bg-secondary">
                     <input type="number"
                         class="w-full bg-transparent text-primary font-bold outline-none placeholder:font-bold placeholder:text-primary"
-                        placeholder="Berat Badan" value="" name="berat_badan" required>
+                        placeholder="Berat Badan" value="" name="berat_badan" id="berat_badan" required>
                     <p class="text-xs text-third font-bold">Kg</p>
                 </div>
                 <div
                     class="flex w-full col-span-1 lg:col-span-6 items-center drop-shadow-lg bg-secondary rounded-md px-6">
                     <select
                         class="w-full outline-none pt-[26px] pb-[24px] rounded-lg bg-transparent text-primary font-bold appearance-none"
-                        name="gender">
+                        name="gender" id="gender">
                         <option value="" class="hidden">Gender</option>
                         <option value="pria">Pria</option>
                         <option value="wanita">Wanita</option>
@@ -173,8 +172,8 @@
                     </div>
                     <?php endforeach;?>
                 </div>
-                <div class="col-span-1 lg:col-span-12 flex justify-center">
-                    <button type="submit" class="py-5 px-[32px] bg-primary rounded-lg flex items-center gap-[11px]">
+                <div class="col-span-1 lg:col-span-12 flex justify-center" id="submit">
+                    <button type="submit" class="py-5 px-[32px] bg-primary rounded-lg flex items-center gap-[11px]" id="btnSubmit">
                         <p class="capitalize text-white font-bold text-xl">submit</p>
                         <img src="assets/VectorSend.svg" alt="icon-send">
                     </button>
@@ -196,7 +195,7 @@
 
                 <div
                     class="col-span-1 md:col-span-4 rounded-lg w-full py-[63px] px-[54px] flex flex-col drop-shadow-lg  bg-white relative">
-                    <button
+                    <button onclick="edit(<?php echo $row['id']?>)"
                         class="w-[40px] h-[40px] flex justify-center items-center rounded-lg absolute top-4 right-4 bg-customyellow">
                         <img src="assets/pencil.svg" alt="">
                     </button>
@@ -208,6 +207,8 @@
                         }elseif($row['status'] == 'Obesitas') {
                             $class = 'bg-customred';
                         }elseif($row['status'] == 'Kurus') {
+                            $class = 'bg-customred';
+                        }else{
                             $class = 'bg-customred';
                         }
                         ?>
@@ -288,5 +289,60 @@
         </div>
     </div>
 </body>
+
+<script>
+    const nameEl = document.getElementById('name');
+    const umurEl = document.getElementById('umur');
+    const beratEl = document.getElementById('berat_badan');
+    const tinggiEl = document.getElementById('tinggi_badan');
+    const genderEl = document.getElementById('gender');
+    const idSubmit = document.getElementById('submit');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const form = document.getElementById('form');
+
+    function edit(id)
+    {
+        fetch('/put/'+id)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                nameEl.value = data.edit.nama
+                umurEl.value = data.edit.umur
+                beratEl.value = data.edit.berat_badan
+                tinggiEl.value = data.edit.tinggi_badan
+                genderEl.value = data.edit.nama
+
+                const fetchedGender = data.edit.gender;
+                const selectedOption = genderEl.querySelector(`option[value="${fetchedGender}"]`);
+                if (selectedOption) {
+                    selectedOption.selected = true;
+                }
+
+                const stringActivitys = data.edit.aktifitas.split(',');
+
+                const activitys = stringActivitys.map(str => parseInt(str, 10));
+                
+                const checkboxes = document.querySelectorAll('input[name="aktifitas_fisik[]"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = activitys.includes(parseInt(checkbox.value));
+                });
+
+                form.action = `/update/${id}`;
+                btnSubmit.classList.add('hidden');
+                idSubmit.innerHTML = `
+                    <button type="submit" class="py-5 px-[32px] bg-primary rounded-lg flex items-center gap-[11px]" id="btnSubmit">
+                        <p class="capitalize text-white font-bold text-xl">update</p>
+                        <img src="assets/VectorSend.svg" alt="icon-send">
+                    </button>
+                `;
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
 
 </html>
