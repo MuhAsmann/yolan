@@ -180,6 +180,14 @@
                     </button>
                 </div>
             </form>
+
+            <!-- my_view.php -->
+<form action="<?= base_url('/search') ?>" method="post" class="mt-4 mb-8">
+<div class="px-4 py-2 rounded-md drop-shadow-lg bg-secondary flex gap-4">
+    <input type="text" name="keyword" placeholder="Cari..." class="p-2 bg-transparent w-full focus:outline-none">
+    <button type="submit" class=" text-primary rounded-md">Cari</button>
+</div>
+</form>
             <div class="grid grid-cols-1 md:grid-cols-12 gap-5 w-full mt-[62px]">
                 <?php if (isset($pasien) && count($pasien) > 0) : ?>
                 <?php $nomor_urut = 1;

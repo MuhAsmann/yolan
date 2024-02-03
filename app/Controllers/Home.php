@@ -200,4 +200,17 @@ class Home extends BaseController
 
         return redirect()->to(base_url('/'));
     }
+
+    public function search()
+    {
+        // Ambil input pencarian dari form
+        $keyword = $this->request->getVar('keyword');
+
+        // Lakukan pencarian menggunakan model atau langsung ke database
+        $model = new Pasien(); // Gantilah MyModel dengan nama model yang sesuai
+        $data['pasien'] = $model->searchData($keyword);
+
+        // Tampilkan hasil pencarian
+        return view('index', $data);
+    }
 }
