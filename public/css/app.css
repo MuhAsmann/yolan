@@ -545,11 +545,17 @@ video {
 .static {
   position: static;
 }
+.fixed {
+  position: fixed;
+}
 .absolute {
   position: absolute;
 }
 .relative {
   position: relative;
+}
+.inset-0 {
+  inset: 0px;
 }
 .left-\[30\%\] {
   left: 30%;
@@ -562,6 +568,36 @@ video {
 }
 .top-4 {
   top: 1rem;
+}
+.left-0 {
+  left: 0px;
+}
+.left-1 {
+  left: 0.25rem;
+}
+.left-10 {
+  left: 2.5rem;
+}
+.top-2 {
+  top: 0.5rem;
+}
+.left-\[-50\%\] {
+  left: -50%;
+}
+.left-\[0\] {
+  left: 0;
+}
+.left-6 {
+  left: 1.5rem;
+}
+.top-1 {
+  top: 0.25rem;
+}
+.top-3 {
+  top: 0.75rem;
+}
+.z-50 {
+  z-index: 50;
 }
 .col-span-1 {
   grid-column: span 1 / span 1;
@@ -608,9 +644,6 @@ video {
 .mt-5 {
   margin-top: 1.25rem;
 }
-.mt-\[\] {
-  margin-top: ;
-}
 .mt-\[62px\] {
   margin-top: 62px;
 }
@@ -656,6 +689,13 @@ video {
 .h-screen {
   height: 100vh;
 }
+.h-full {
+  height: 100%;
+}
+.max-h-fit {
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -680,8 +720,18 @@ video {
 .w-full {
   width: 100%;
 }
+.w-\[1px\] {
+  width: 1px;
+}
+.w-screen {
+  width: 100vw;
+}
 .min-w-\[40\%\] {
   min-width: 40%;
+}
+.max-w-fit {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -787,6 +837,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(193 241 126 / var(--tw-bg-opacity));
 }
+.bg-custompink {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 93 210 / var(--tw-bg-opacity));
+}
 .bg-customred {
   --tw-bg-opacity: 1;
   background-color: rgb(255 104 90 / var(--tw-bg-opacity));
@@ -813,6 +867,9 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.p-10 {
+  padding: 2.5rem;
 }
 .p-6 {
   padding: 1.5rem;
@@ -860,6 +917,18 @@ video {
 .py-\[63px\] {
   padding-top: 63px;
   padding-bottom: 63px;
+}
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .pb-\[24px\] {
   padding-bottom: 24px;
@@ -915,6 +984,10 @@ video {
 .leading-3 {
   line-height: .75rem;
 }
+.text-customred {
+  --tw-text-opacity: 1;
+  color: rgb(255 104 90 / var(--tw-text-opacity));
+}
 .text-emerald-400 {
   --tw-text-opacity: 1;
   color: rgb(52 211 153 / var(--tw-text-opacity));
@@ -937,6 +1010,9 @@ video {
 }
 .accent-primary {
   accent-color: #3FC0A3;
+}
+.opacity-50 {
+  opacity: 0.5;
 }
 .shadow-none {
   --tw-shadow: 0 0 #0000;

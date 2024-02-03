@@ -102,8 +102,28 @@
                         <img src="assets/logoutIcon.svg" alt="logout" type="submit"> </button>
                 </form>
             </div>
+
+
             <form action="<?= base_url('/save') ?>" method="post"
-                class="w-full bg-white drop-shadow-lg py-6 lg:py-[69px] px-6 lg:px-[42px] grid grid-cols-1 lg:grid-cols-12 rounded-lg lg:gap-x-[27px] gap-y-6 lg:gap-y-16 justify-center">
+                class="w-full bg-white drop-shadow-lg py-6 lg:py-[69px] relative px-6 lg:px-[42px] grid grid-cols-1 lg:grid-cols-12 rounded-lg lg:gap-x-[27px] gap-y-6 lg:gap-y-16 justify-center">
+                <div class="col-lg-4 col-md-4 absolute top-3 left-10">
+                    <?php
+    $message = session()->getFlashdata('message');
+    $message_type = session()->getFlashdata('message_type');
+
+    if ($message) :
+        ?>
+                    <div
+                        class="max-w-fit max-h-fit text-white px-10 py-2 rounded-lg <?= strpos($message_type, 'success') !== false ? 'bg-primary' : 'bg-customred' ?>">
+                        <?= $message ?>
+                    </div>
+
+                    <?php
+        // Menunggu selama 3 detik dan kemudian me-refresh halaman
+        header("refresh: 3");
+    endif;
+    ?>
+                </div>
                 <div class="col-span-1 lg:col-span-4">
                     <input type="text"
                         class="w-full bg-secondary text-primary font-bold outline-none placeholder:font-bold placeholder:text-primary px-6 pt-[26px] pb-[24px] drop-shadow-lg rounded-lg"
@@ -177,11 +197,13 @@
                     </div>
                     <h1 class="text-primary font-bold text-5xl text-center mb-[59px]"><?= $row['nama']; ?></h1>
                     <div class="flex gap-4 items-center justify-center w-full mb-[35px]">
-                        <div class="w-[100px] h-[100px] rounded-lg <?= $row['gender'] == "pria" ? "bg-customblue" : "bg-custompink"?> flex justify-center items-center">
+                        <div
+                            class="w-[100px] h-[100px] rounded-lg <?= $row['gender'] == "pria" ? "bg-customblue" : "bg-custompink"?> flex justify-center items-center">
                             <img src="<?= $row['gender'] == "pria" ? "assets/man.svg" : "assets/woman.svg" ?>" alt="">
                         </div>
                         <div class="w-[100px] h-[100px] rounded-lg bg-customgreen flex justify-center items-center">
-                            <p class="text-5xl text-white font-extrabold"><?= $row['umur']; ?></p>
+                            <p class="text-5xl text-white font-extrabold"><?= $row['umur']; ?>
+                            </p>
                         </div>
                     </div>
                     <div class="grid grid-cols-4 gap-4 mb-[48px]">

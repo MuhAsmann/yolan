@@ -26,7 +26,7 @@
             <?php $message_type = session()->getFlashdata('message_type'); ?>
 
             <?php if ($message) : ?>
-            <div class=" alert <?= strpos($message_type, 'success') !== false ? 'alert-success' : 'alert-danger' ?>">
+            <div class=" alert <?= strpos($message_type, 'success') !== false ? 'alert-success' : 'text-customred' ?>">
                 <?= $message ?>
             </div>
             <?php endif; ?>
@@ -34,14 +34,16 @@
             <div class="flex gap-4">
                 <img src="assets/user.svg" alt="">
                 <div class="text-emerald-400 text-base font-bold font-['Plus Jakarta Sans']">
-                    <input type="text" class="bg-transparent focus:outline-none border-b-2 border-primary py-4 placeholder:text-primary"
+                    <input type="text"
+                        class="bg-transparent focus:outline-none border-b-2 border-primary py-4 placeholder:text-primary"
                         name="username" placeholder="Masukkan Username" required="required">
                 </div>
             </div>
             <div class="flex gap-4">
                 <img src="assets/password.svg" alt="">
                 <div class="text-emerald-400 text-base font-bold font-['Plus Jakarta Sans']">
-                    <input type="password" class="bg-transparent focus:outline-none border-b-2 border-primary py-4 placeholder:text-primary"
+                    <input type="password"
+                        class="bg-transparent focus:outline-none border-b-2 border-primary py-4 placeholder:text-primary"
                         name="password" placeholder="Masukkan Password" required="required">
                 </div>
             </div>
