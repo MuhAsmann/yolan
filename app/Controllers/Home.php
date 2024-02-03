@@ -163,13 +163,13 @@ class Home extends BaseController
         function classifyBMI($bmi) {
             // Menentukan status BMI berdasarkan rentang tertentu
             if ($bmi < 18.5) {
-                return 'Kurus (Underweight)';
+                return 'Kurus';
             } elseif ($bmi >= 18.5 && $bmi < 24.9) {
-                return 'Normal (Normal Weight)';
+                return 'Normal';
             } elseif ($bmi >= 25 && $bmi < 29.9) {
-                return 'Berlebihan berat badan (Overweight)';
+                return 'Berlebihan';
             } elseif ($bmi >= 30) {
-                return 'Obesitas (Obese)';
+                return 'Obesitas';
             } else {
                 return 'BMI Tidak Valid (Invalid BMI)'; // Menangani nilai yang tidak valid
             }

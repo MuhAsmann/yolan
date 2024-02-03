@@ -192,9 +192,21 @@
                         class="w-[40px] h-[40px] flex justify-center items-center rounded-lg absolute top-4 right-4 bg-customyellow">
                         <img src="assets/pencil.svg" alt="">
                     </button>
-                    <div class="h-[39px] min-w-[40%] rounded-b-lg  absolute top-0 left-[30%] bg-customgreen">
+                    <?php
+                        if ($row['status'] == 'Normal') {
+                            $class = 'bg-customgreen';
+                        } elseif($row['status'] == 'Berlebihan') {
+                            $class = 'bg-customyellow';
+                        }elseif($row['status'] == 'Obesitas') {
+                            $class = 'bg-customred';
+                        }elseif($row['status'] == 'Kurus') {
+                            $class = 'bg-customred';
+                        }
+                        ?>
 
-                    </div>
+                        <div class="h-[39px] min-w-[40%] rounded-b-lg absolute top-0 left-[30%] <?= $class ?> flex justify-center items-center">
+                            <p class="text-white font-bold"><?= $row['status']; ?></p>
+                        </div>
                     <h1 class="text-primary font-bold text-5xl text-center mb-[59px]"><?= $row['nama']; ?></h1>
                     <div class="flex gap-4 items-center justify-center w-full mb-[35px]">
                         <div
