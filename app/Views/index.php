@@ -177,8 +177,8 @@
                     </div>
                     <h1 class="text-primary font-bold text-5xl text-center mb-[59px]"><?= $row['nama']; ?></h1>
                     <div class="flex gap-4 items-center justify-center w-full mb-[35px]">
-                        <div class="w-[100px] h-[100px] rounded-lg bg-customblue flex justify-center items-center">
-                            <img src="assets/man.svg" alt="">
+                        <div class="w-[100px] h-[100px] rounded-lg <?= $row['gender'] == "pria" ? "bg-customblue" : "bg-custompink"?> flex justify-center items-center">
+                            <img src="<?= $row['gender'] == "pria" ? "assets/man.svg" : "assets/woman.svg" ?>" alt="">
                         </div>
                         <div class="w-[100px] h-[100px] rounded-lg bg-customgreen flex justify-center items-center">
                             <p class="text-5xl text-white font-extrabold"><?= $row['umur']; ?></p>
