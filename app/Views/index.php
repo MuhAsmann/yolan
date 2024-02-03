@@ -200,11 +200,14 @@
 							<?php endif; ?>
 						</div>
 					</div>
-
+					<?php
+					$isValue = false;
+					
+					?>
 					<form action="<?= base_url('/save') ?>" method="post" class="card-body">
 						<div class="form-group">
 							<label for="name">Name:</label>
-							<input type="text" class="form-control" id="name" name="name" required>
+							<input type="text" class="form-control" id="name" name="name" required value="<?=$isValue ? 'ini true ' : '' ?>" >
 						</div>
 
 						<div class="form-group">
