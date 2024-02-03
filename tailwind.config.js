@@ -15,7 +15,8 @@ module.exports = {
         'customyellow': '#FFF07A',
         'customblue' : '#49C5F3',
         'customgreen' : '#C1F17E',
-        'customred' : '#FF685A'
+        'customred': '#FF685A',
+        'custompink' : '#F05DD2'
       },
       fontFamily: {
         'jakarta' : 'Plus Jakarta Sans'
