@@ -20,7 +20,7 @@
 <div class="bg-primary h-screen flex justify-center items-center px-2 ">
     <div class="px-2">
         <form action="/login" method="post"
-            class="bg-[#F5FCFA] overflow-hidden h-auto w-auto p-6 md:h-[400px] md:w-[400px] rounded-[8px] flex flex-col items-center justify-center gap-y-12">
+            class="bg-[#F5FCFA] overflow-hidden h-auto w-auto p-6 md:min-h-[400px] md:w-[400px] rounded-[8px] flex flex-col items-center justify-center gap-y-12">
             <h2 class="text-emerald-400 text-4xl font-bold font-['Plus Jakarta Sans']">Login</h2>
             <?php $message = session()->getFlashdata('message'); ?>
             <?php $message_type = session()->getFlashdata('message_type'); ?>
@@ -34,15 +34,15 @@
             <div class="flex gap-4">
                 <img src="assets/user.svg" alt="">
                 <div class="text-emerald-400 text-base font-bold font-['Plus Jakarta Sans']">
-                    <input type="text" class="bg-transparent focus:outline-none border-b border-primary p-4"
-                        name="username" placeholder="Username" required="required">
+                    <input type="text" class="bg-transparent focus:outline-none border-b-2 border-primary py-4 placeholder:text-primary"
+                        name="username" placeholder="Masukkan Username" required="required">
                 </div>
             </div>
             <div class="flex gap-4">
                 <img src="assets/password.svg" alt="">
                 <div class="text-emerald-400 text-base font-bold font-['Plus Jakarta Sans']">
-                    <input type="password" class="bg-transparent focus:outline-none border-b border-primary p-4"
-                        name="password" placeholder="Password" required="required">
+                    <input type="password" class="bg-transparent focus:outline-none border-b-2 border-primary py-4 placeholder:text-primary"
+                        name="password" placeholder="Masukkan Password" required="required">
                 </div>
             </div>
             <button type="submit" class="w-40 h-12 relative hover:cursor-pointer">

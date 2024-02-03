@@ -9,7 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'primary' : '#3FC0A3'
+        'primary': '#3FC0A3',
+        'secondary': '#F5FCFA',
+        'third' : '#8BD9C8'
+      },
+      fontFamily: {
+        'jakarta' : 'Plus Jakarta Sans'
       }
     },
   },
