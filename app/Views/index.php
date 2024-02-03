@@ -38,12 +38,6 @@
 		<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div ">
 				<div class="">
-					<div class="main-menu-header">
-						<img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
-						<div class="user-details">
-							<div id="more-details">Admin <i class="fa fa-caret-down"></i></div>
-						</div>
-					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
 							<li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
@@ -71,11 +65,6 @@
 
 		<div class="m-header">
 			<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-			<a href="#!" class="b-brand">
-				<!-- ========   change your logo hear   ============ -->
-				<img src="assets/images/logo.png" alt="" class="logo">
-				<img src="assets/images/logo-icon.png" alt="" class="logo-thumb">
-			</a>
 			<a href="#!" class="mob-toggler">
 				<i class="feather icon-more-vertical"></i>
 			</a>
