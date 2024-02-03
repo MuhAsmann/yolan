@@ -13,13 +13,15 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="css/app.css">
 
+
 </head>
 
 <!-- [ auth-signin ] start -->
-<div class="bg-primary h-screen flex justify-center items-center">
-    <div>
-        <form action="/login" method="post" class="bg-slate-400 h-fix">
-            <h2 class="">Admin Login</h2>
+<div class="bg-primary h-screen flex justify-center items-center px-2 ">
+    <div class="px-2">
+        <form action="/login" method="post"
+            class="bg-[#F5FCFA] overflow-hidden h-auto w-auto p-6 md:h-[400px] md:w-[400px] rounded-[8px] flex flex-col items-center justify-center gap-y-12">
+            <h2 class="text-emerald-400 text-4xl font-bold font-['Plus Jakarta Sans']">Login</h2>
             <?php $message = session()->getFlashdata('message'); ?>
             <?php $message_type = session()->getFlashdata('message_type'); ?>
 
@@ -29,15 +31,29 @@
             </div>
             <?php endif; ?>
 
-            <div class="">
-                <input type="text" class="" name="username" placeholder="Username" required="required">
+            <div class="flex gap-4">
+                <img src="assets/user.svg" alt="">
+                <div class="text-emerald-400 text-base font-bold font-['Plus Jakarta Sans']">
+                    <input type="text" class="bg-transparent focus:outline-none border-b border-primary p-4"
+                        name="username" placeholder="Username" required="required">
+                </div>
             </div>
-            <div class="">
-                <input type="password" class="" name="password" placeholder="Password" required="required">
+            <div class="flex gap-4">
+                <img src="assets/password.svg" alt="">
+                <div class="text-emerald-400 text-base font-bold font-['Plus Jakarta Sans']">
+                    <input type="password" class="bg-transparent focus:outline-none border-b border-primary p-4"
+                        name="password" placeholder="Password" required="required">
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="">Sign in</button>
-            </div>
+            <button type="submit" class="w-40 h-12 relative hover:cursor-pointer">
+                <div class="w-40 h-12 bg-emerald-400 rounded-lg flex justify-center items-center gap-x-4">
+                    <div class=" text-white text-xl font-bold font-['Plus Jakarta Sans'] leading-3">
+                        Login
+                    </div>
+                    <img src="assets/VectorSend.svg" alt="">
+                </div>
+            </button>
+
         </form>
     </div>
 </div>
