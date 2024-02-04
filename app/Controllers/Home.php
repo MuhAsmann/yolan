@@ -178,13 +178,92 @@ class Home extends BaseController
 
         $status = classifyBMI($bmi);
 
+        $checkBoxs = [
+			[
+				"value" => 200,
+				"title" => "duduk"
+			],
+			[
+				"value" => 147,
+				"title" => "berdiri"
+			],
+			[
+				"value" => 118,
+				"title" => "mengemudi"
+			],
+			[
+				"value" => 34,
+				"title" => "mengetik"
+			],
+			[
+				"value" => 117,
+				"title" => "menyapu"
+			],
+			[
+				"value" => 147.1,
+				"title" => "memasak"
+			],
+			[
+				"value" => 184,
+				"title" => "bersikan rumah"
+			],
+			[
+				"value" => 169,
+				"title" => "berbelanja"
+			],
+			[
+				"value" => 220,
+				"title" => "menyetrika"
+			],
+			[
+				"value" => 225,
+				"title" => "jalan kaki"
+			],
+			[
+				"value" => 147.2,
+				"title" => "mengajar"
+			],
+			[
+				"value" => 300,
+				"title" => "bersepeda"
+			],
+			[
+				"value" => 450,
+				"title" => "mendaki"
+			],
+			[
+				"value" => 330,
+				"title" => "berkebun"
+			],
+			[
+				"value" => 350,
+				"title" => "kerja kontruksi"
+			],
+		];
+
+                $checkBoxsMap = [];
+        foreach ($checkBoxs as $checkbox) {
+            $checkBoxsMap[(string)$checkbox['value']] = $checkbox['title'];
+        }
+
+        $selectedActivities = [];
+
+        // Periksa setiap nilai aktivitas fisik yang diposting
+        foreach ($aktifitas_fisik as $selectedValue) {
+            // Periksa apakah nilai aktivitas ada dalam hashmap
+            if (isset($checkBoxsMap[$selectedValue])) {
+                // Jika ada, tambahkan judul aktivitas ke dalam daftar yang dipilih
+                $selectedActivities[] = $checkBoxsMap[$selectedValue];
+            }
+        }
+        
         $data = [
             'nama' => $this->request->getPost('name'),
             'umur' => $usia,
             'tinggi_badan' => $tinggiBadan,
             'berat_badan' => $beratBadan,
             'gender' => $gender,
-            'aktifitas' => implode(", ", $aktifitas_fisik),
+            'aktifitas' => implode(", ", $selectedActivities), // Menggunakan judul aktifitas yang dipilih
             'kalori' => $dailyCalories,
             'defisit' => $dailyCalories - 500,
             'surplus' => $dailyCalories + 500,
@@ -298,13 +377,92 @@ class Home extends BaseController
 
         $status = classifyBMI($bmi);
 
+        $checkBoxs = [
+			[
+				"value" => 200,
+				"title" => "duduk"
+			],
+			[
+				"value" => 147,
+				"title" => "berdiri"
+			],
+			[
+				"value" => 118,
+				"title" => "mengemudi"
+			],
+			[
+				"value" => 34,
+				"title" => "mengetik"
+			],
+			[
+				"value" => 117,
+				"title" => "menyapu"
+			],
+			[
+				"value" => 147.1,
+				"title" => "memasak"
+			],
+			[
+				"value" => 184,
+				"title" => "bersikan rumah"
+			],
+			[
+				"value" => 169,
+				"title" => "berbelanja"
+			],
+			[
+				"value" => 220,
+				"title" => "menyetrika"
+			],
+			[
+				"value" => 225,
+				"title" => "jalan kaki"
+			],
+			[
+				"value" => 147.2,
+				"title" => "mengajar"
+			],
+			[
+				"value" => 300,
+				"title" => "bersepeda"
+			],
+			[
+				"value" => 450,
+				"title" => "mendaki"
+			],
+			[
+				"value" => 330,
+				"title" => "berkebun"
+			],
+			[
+				"value" => 350,
+				"title" => "kerja kontruksi"
+			],
+		];
+
+                $checkBoxsMap = [];
+        foreach ($checkBoxs as $checkbox) {
+            $checkBoxsMap[(string)$checkbox['value']] = $checkbox['title'];
+        }
+
+        $selectedActivities = [];
+
+        // Periksa setiap nilai aktivitas fisik yang diposting
+        foreach ($aktifitas_fisik as $selectedValue) {
+            // Periksa apakah nilai aktivitas ada dalam hashmap
+            if (isset($checkBoxsMap[$selectedValue])) {
+                // Jika ada, tambahkan judul aktivitas ke dalam daftar yang dipilih
+                $selectedActivities[] = $checkBoxsMap[$selectedValue];
+            }
+        }
+        
         $data = [
             'nama' => $this->request->getPost('name'),
             'umur' => $usia,
             'tinggi_badan' => $tinggiBadan,
             'berat_badan' => $beratBadan,
             'gender' => $gender,
-            'aktifitas' => implode(", ", $aktifitas_fisik),
+            'aktifitas' => implode(", ", $selectedActivities), // Menggunakan judul aktifitas yang dipilih
             'kalori' => $dailyCalories,
             'defisit' => $dailyCalories - 500,
             'surplus' => $dailyCalories + 500,

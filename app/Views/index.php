@@ -52,7 +52,7 @@
 				"title" => "menyapu"
 			],
 			[
-				"value" => 147,
+				"value" => 147.1,
 				"title" => "memasak"
 			],
 			[
@@ -72,7 +72,7 @@
 				"title" => "jalan kaki"
 			],
 			[
-				"value" => 147,
+				"value" => 147.2,
 				"title" => "mengajar"
 			],
 			[
@@ -118,8 +118,6 @@
                                         </div>
 
                                         <?php
-                            // Menunggu selama 3 detik dan kemudian me-refresh halaman
-                            header("refresh: 3");
                         endif;
                     ?>
                 </div>
@@ -264,7 +262,7 @@
                             <div class="w-[20px] h-[20px] bg-primary rounded-md  flex justify-center items-center">
                                 <img src="assets/checklist.svg" alt="">
                             </div>
-                            <p class="font-bold text-xl text-primary">' . trim($aktifitas_item) . '</p>
+                            <p class="font-bold text-xl text-primary capitalize">' . trim($aktifitas_item) . '</p>
                             </div>';
                             }
                             ?>
