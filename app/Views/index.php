@@ -253,7 +253,7 @@
                         </div>
 
                         <div
-                            class="col-span-4 bg-secondary w-full py-[10px] rounded-lg flex flex-col items-center gap-x-6">
+                            class="col-span-4 bg-secondary w-full py-[10px] rounded-lg flex  flex-col items-start pl-20 gap-x-6">
                             <?php
                             $aktifitas = explode(",", $row['aktifitas']);
                             sort($aktifitas);
