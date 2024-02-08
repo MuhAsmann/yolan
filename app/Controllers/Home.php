@@ -11,39 +11,39 @@ class Home extends BaseController
 {
     use ResponseTrait;
     protected $session = null;
-	protected $request = null;
-	protected $notif;
+    protected $request = null;
+    protected $notif;
 
-	public function __construct()
-	{
-		$this->session = session();
-		$this->request = \Config\Services::request();
-		$this->db = \Config\Database::connect();
-		$this->moduser = model('App\Models\User');
+    public function __construct()
+    {
+        $this->session = session();
+        $this->request = \Config\Services::request();
+        $this->db = \Config\Database::connect();
+        $this->moduser = model('App\Models\User');
         $this->notif = new Notification();
-	}
+    }
 
 
     public function login()
-	{
-		$username = $this->request->getPost('username');
-		$password = $this->request->getPost('password');
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
 
-		if (isset($_SESSION['admin_logged_in'])) {
+        if (isset($_SESSION['admin_logged_in'])) {
             return view('/');
-		}
+        }
 
-		if (!isset($_SESSION['admin_logged_in']) && (empty($username) || empty($password))) {
-			$this->notif->message('Data login tidak lengkap', 'danger');
+        if (!isset($_SESSION['admin_logged_in']) && (empty($username) || empty($password))) {
+            $this->notif->message('Data login tidak lengkap', 'danger');
             return view('/');
-		}
+        }
 
-		if (!isset($_SESSION['admin_logged_in']) && isset($username) && isset($password)) {
+        if (!isset($_SESSION['admin_logged_in']) && isset($username) && isset($password)) {
 
-			$datauser = ['username' => $username, 'password' => md5($password)];
+            $datauser = ['username' => $username, 'password' => md5($password)];
 
-			$user = $this->moduser->asObject()->where($datauser)->limit(1)->find();
-			if (count($user) > 0) {
+            $user = $this->moduser->asObject()->where($datauser)->limit(1)->find();
+            if (count($user) > 0) {
                 $data_session = array(
                     'admin_user_id' => $user[0]->id,
                     'admin_username' => $user[0]->username,
@@ -52,40 +52,86 @@ class Home extends BaseController
                 $this->session->set($data_session);
                 session()->setFlashdata('message', 'Login Berhasil');
                 session()->setFlashdata('message_type', 'success');
-                return redirect()->to(base_url('/'));
-			} else {
-				$this->notif->message('Username atau password anda salah', 'danger');
+                return $this->response->setJSON($data_session);
+            } else {
+                $this->notif->message('Username atau password anda salah', 'danger');
                 session()->setFlashdata('message', 'Username atau password anda salah');
                 session()->setFlashdata('message_type', 'error');
-				return view('/login');
-			}
-		}
-	}
+                return view('/login');
+            }
+        }
+    }
 
-	public function logout()
-	{
-		$array_items = array('admin_user_id', 'admin_username', 'admin_role', 'admin_logged_in');
-		$this->session->remove($array_items);
-		return redirect()->to(base_url('/',));
-	}
+    public function register()
+    {
+        return view('/register');
+    }
+
+    public function register_user()
+    {
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        // if (isset($_SESSION['admin_logged_in'])) {
+        //     return view('/');
+        // }
+
+        // if (!isset($_SESSION['admin_logged_in']) && (empty($username) || empty($password))) {
+        // 	$this->notif->message('Data login tidak lengkap', 'danger');
+        //     return view('/');
+        // }
+
+        $datauser = ['username' => $username, 'password' => md5($password)];
+        if (/*!isset($_SESSION['admin_logged_in']) &&*/isset($username) && isset($password)) {
+
+
+            // $user = $this->moduser->asObject()->where($datauser)->limit(1)->find();
+            // if (count($user) > 0) {
+            //     $data_session = array(
+            //         'admin_user_id' => $user[0]->id,
+            //         'admin_username' => $user[0]->username,
+            //         'admin_logged_in' => TRUE
+            //     );
+            //     $this->session->set($data_session);
+            //     session()->setFlashdata('message', 'Login Berhasil');
+            //     session()->setFlashdata('message_type', 'success');
+            //     return redirect()->to(base_url('/'));
+            // } else {
+            // 	$this->notif->message('Username atau password anda salah', 'danger');
+            //     session()->setFlashdata('message', 'Username atau password anda salah');
+            //     session()->setFlashdata('message_type', 'error');
+            // }
+        }
+        $usermodel = new User();
+        $usermodel->insert($datauser);
+
+        return $this->response->setJSON($datauser);
+    }
+
+    public function logout()
+    {
+        $array_items = array('admin_user_id', 'admin_username', 'admin_role', 'admin_logged_in');
+        $this->session->remove($array_items);
+        return redirect()->to(base_url('/',));
+    }
 
 
     public function index()
     {
         if (!isset($_SESSION['admin_logged_in'])) {
-			$dataIndex['check'] = "Belum login";
-			$this->session->removeTempdata('message');
-			return view('/login', $dataIndex);
-		} else {
-			$dataIndex['check'] = "Sedang login";
-		}
+            $dataIndex['check'] = "Belum login";
+            $this->session->removeTempdata('message');
+            return view('/login', $dataIndex);
+        } else {
+            $dataIndex['check'] = "Sedang login";
+        }
 
         $userModel = new User();
         $data['users'] = $userModel->findAll();
 
         $pasienModel = new Pasien();
-        $data['pasien'] = $pasienModel->findAll();
-
+        $id = $this->session->get('admin_user_id');
+        $data['pasien'] = $pasienModel->where('user_id', $id)->findAll();
         return view('index', $data);
     }
 
@@ -104,6 +150,7 @@ class Home extends BaseController
 
     public function save()
     {
+        $id = $this->session->get('admin_user_id');
         $beratBadan = $this->request->getPost('berat_badan');
         $tinggiBadan = $this->request->getPost('tinggi_badan');
         $usia = $this->request->getPost('umur');
@@ -111,8 +158,9 @@ class Home extends BaseController
         $aktifitas_fisik = $this->request->getPost('aktifitas_fisik');
 
         $bmi = $beratBadan / (($tinggiBadan / 100) ** 2);
-        
-        function calculateBMR($gender, $weight, $height, $age) {
+
+        function calculateBMR($gender, $weight, $height, $age)
+        {
             if ($gender == 'pria') {
                 return 88.362 + (13.397 * $weight) + (4.799 * $height) - (5.677 * $age);
             } elseif ($gender == 'wanita') {
@@ -125,12 +173,13 @@ class Home extends BaseController
 
         $totalKaloriAktifitasFisik = array_sum(array_map('intval', $aktifitas_fisik));
 
-        function getValueForConditions($totalKaloriAktifitasFisik) {
-            if ($totalKaloriAktifitasFisik < 300){
+        function getValueForConditions($totalKaloriAktifitasFisik)
+        {
+            if ($totalKaloriAktifitasFisik < 300) {
                 return 'a1';
-            }elseif($totalKaloriAktifitasFisik <= 599){
+            } elseif ($totalKaloriAktifitasFisik <= 599) {
                 return 'a2';
-            }else{
+            } else {
                 return 'a3';
             }
         }
@@ -140,28 +189,29 @@ class Home extends BaseController
 
         switch (strval($aktivitas)) {
             case 'a1':
-                if($gender == 'pria'){
+                if ($gender == 'pria') {
                     $faktorAktivitas = 1.56;
                 }
                 $faktorAktivitas = 1.55;
                 break;
             case 'a2':
-                if($gender == 'pria'){
+                if ($gender == 'pria') {
                     $faktorAktivitas = 1.76;
                 }
                 $faktorAktivitas = 1.70;
                 break;
             case 'a3':
-                if($gender == 'pria'){
+                if ($gender == 'pria') {
                     $faktorAktivitas = 2.1;
                 }
                 $faktorAktivitas = 2.0;
                 break;
         }
-        
+
         $dailyCalories =  $bmr * $faktorAktivitas;
 
-        function classifyBMI($bmi) {
+        function classifyBMI($bmi)
+        {
             // Menentukan status BMI berdasarkan rentang tertentu
             if ($bmi < 18.5) {
                 return 'Kurus';
@@ -179,69 +229,69 @@ class Home extends BaseController
         $status = classifyBMI($bmi);
 
         $checkBoxs = [
-			[
-				"value" => 200,
-				"title" => "duduk"
-			],
-			[
-				"value" => 147,
-				"title" => "berdiri"
-			],
-			[
-				"value" => 118,
-				"title" => "mengemudi"
-			],
-			[
-				"value" => 34,
-				"title" => "mengetik"
-			],
-			[
-				"value" => 117,
-				"title" => "menyapu"
-			],
-			[
-				"value" => 147.1,
-				"title" => "memasak"
-			],
-			[
-				"value" => 184,
-				"title" => "bersikan rumah"
-			],
-			[
-				"value" => 169,
-				"title" => "berbelanja"
-			],
-			[
-				"value" => 220,
-				"title" => "menyetrika"
-			],
-			[
-				"value" => 225,
-				"title" => "jalan kaki"
-			],
-			[
-				"value" => 147.2,
-				"title" => "mengajar"
-			],
-			[
-				"value" => 300,
-				"title" => "bersepeda"
-			],
-			[
-				"value" => 450,
-				"title" => "mendaki"
-			],
-			[
-				"value" => 330,
-				"title" => "berkebun"
-			],
-			[
-				"value" => 350,
-				"title" => "kerja kontruksi"
-			],
-		];
+            [
+                "value" => 200,
+                "title" => "duduk"
+            ],
+            [
+                "value" => 147,
+                "title" => "berdiri"
+            ],
+            [
+                "value" => 118,
+                "title" => "mengemudi"
+            ],
+            [
+                "value" => 34,
+                "title" => "mengetik"
+            ],
+            [
+                "value" => 117,
+                "title" => "menyapu"
+            ],
+            [
+                "value" => 147.1,
+                "title" => "memasak"
+            ],
+            [
+                "value" => 184,
+                "title" => "bersikan rumah"
+            ],
+            [
+                "value" => 169,
+                "title" => "berbelanja"
+            ],
+            [
+                "value" => 220,
+                "title" => "menyetrika"
+            ],
+            [
+                "value" => 225,
+                "title" => "jalan kaki"
+            ],
+            [
+                "value" => 147.2,
+                "title" => "mengajar"
+            ],
+            [
+                "value" => 300,
+                "title" => "bersepeda"
+            ],
+            [
+                "value" => 450,
+                "title" => "mendaki"
+            ],
+            [
+                "value" => 330,
+                "title" => "berkebun"
+            ],
+            [
+                "value" => 350,
+                "title" => "kerja kontruksi"
+            ],
+        ];
 
-                $checkBoxsMap = [];
+        $checkBoxsMap = [];
         foreach ($checkBoxs as $checkbox) {
             $checkBoxsMap[(string)$checkbox['value']] = $checkbox['title'];
         }
@@ -256,7 +306,7 @@ class Home extends BaseController
                 $selectedActivities[] = $checkBoxsMap[$selectedValue];
             }
         }
-        
+
         $data = [
             'nama' => $this->request->getPost('name'),
             'umur' => $usia,
@@ -267,7 +317,8 @@ class Home extends BaseController
             'kalori' => $dailyCalories,
             'defisit' => $dailyCalories - 500,
             'surplus' => $dailyCalories + 500,
-            'status' => $status
+            'status' => $status,
+            'user_id' => $id
         ];
 
         $pasienModel = new Pasien();
@@ -287,8 +338,9 @@ class Home extends BaseController
         $keyword = $this->request->getVar('keyword');
 
         // Lakukan pencarian menggunakan model atau langsung ke database
-        $model = new Pasien(); // Gantilah MyModel dengan nama model yang sesuai
-        $data['pasien'] = $model->searchData($keyword);
+        $pasienModel = new Pasien(); // Gantilah MyModel dengan nama model yang sesuai
+        $id = $this->session->get('admin_user_id');
+        $data['pasien'] = $pasienModel->where('user_id', $id)->searchData($keyword);
 
         // Tampilkan hasil pencarian
         return view('index', $data);
@@ -307,11 +359,13 @@ class Home extends BaseController
         $tinggiBadan = $this->request->getPost('tinggi_badan');
         $usia = $this->request->getPost('umur');
         $gender = $this->request->getPost('gender');
-        $aktifitas_fisik = $this->request->getPost('aktifitas_fisik');
+        $list_activity = $this->request->getPost('aktifitas_fisik');
+        $aktifitas_fisik = $list_activity == true ? $list_activity : [0];
 
         $bmi = $beratBadan / (($tinggiBadan / 100) ** 2);
-        
-        function calculateBMR($gender, $weight, $height, $age) {
+
+        function calculateBMR($gender, $weight, $height, $age)
+        {
             if ($gender == 'pria') {
                 return 88.362 + (13.397 * $weight) + (4.799 * $height) - (5.677 * $age);
             } elseif ($gender == 'wanita') {
@@ -324,12 +378,13 @@ class Home extends BaseController
 
         $totalKaloriAktifitasFisik = array_sum(array_map('intval', $aktifitas_fisik));
 
-        function getValueForConditions($totalKaloriAktifitasFisik) {
-            if ($totalKaloriAktifitasFisik < 300){
+        function getValueForConditions($totalKaloriAktifitasFisik)
+        {
+            if ($totalKaloriAktifitasFisik < 300) {
                 return 'a1';
-            }elseif($totalKaloriAktifitasFisik <= 599){
+            } elseif ($totalKaloriAktifitasFisik <= 599) {
                 return 'a2';
-            }else{
+            } else {
                 return 'a3';
             }
         }
@@ -339,28 +394,29 @@ class Home extends BaseController
 
         switch (strval($aktivitas)) {
             case 'a1':
-                if($gender == 'pria'){
+                if ($gender == 'pria') {
                     $faktorAktivitas = 1.56;
                 }
                 $faktorAktivitas = 1.55;
                 break;
             case 'a2':
-                if($gender == 'pria'){
+                if ($gender == 'pria') {
                     $faktorAktivitas = 1.76;
                 }
                 $faktorAktivitas = 1.70;
                 break;
             case 'a3':
-                if($gender == 'pria'){
+                if ($gender == 'pria') {
                     $faktorAktivitas = 2.1;
                 }
                 $faktorAktivitas = 2.0;
                 break;
         }
-        
+
         $dailyCalories =  $bmr * $faktorAktivitas;
 
-        function classifyBMI($bmi) {
+        function classifyBMI($bmi)
+        {
             // Menentukan status BMI berdasarkan rentang tertentu
             if ($bmi < 18.5) {
                 return 'Kurus';
@@ -378,69 +434,69 @@ class Home extends BaseController
         $status = classifyBMI($bmi);
 
         $checkBoxs = [
-			[
-				"value" => 200,
-				"title" => "duduk"
-			],
-			[
-				"value" => 147,
-				"title" => "berdiri"
-			],
-			[
-				"value" => 118,
-				"title" => "mengemudi"
-			],
-			[
-				"value" => 34,
-				"title" => "mengetik"
-			],
-			[
-				"value" => 117,
-				"title" => "menyapu"
-			],
-			[
-				"value" => 147.1,
-				"title" => "memasak"
-			],
-			[
-				"value" => 184,
-				"title" => "bersikan rumah"
-			],
-			[
-				"value" => 169,
-				"title" => "berbelanja"
-			],
-			[
-				"value" => 220,
-				"title" => "menyetrika"
-			],
-			[
-				"value" => 225,
-				"title" => "jalan kaki"
-			],
-			[
-				"value" => 147.2,
-				"title" => "mengajar"
-			],
-			[
-				"value" => 300,
-				"title" => "bersepeda"
-			],
-			[
-				"value" => 450,
-				"title" => "mendaki"
-			],
-			[
-				"value" => 330,
-				"title" => "berkebun"
-			],
-			[
-				"value" => 350,
-				"title" => "kerja kontruksi"
-			],
-		];
+            [
+                "value" => 200,
+                "title" => "duduk"
+            ],
+            [
+                "value" => 147,
+                "title" => "berdiri"
+            ],
+            [
+                "value" => 118,
+                "title" => "mengemudi"
+            ],
+            [
+                "value" => 34,
+                "title" => "mengetik"
+            ],
+            [
+                "value" => 117,
+                "title" => "menyapu"
+            ],
+            [
+                "value" => 147.1,
+                "title" => "memasak"
+            ],
+            [
+                "value" => 184,
+                "title" => "bersikan rumah"
+            ],
+            [
+                "value" => 169,
+                "title" => "berbelanja"
+            ],
+            [
+                "value" => 220,
+                "title" => "menyetrika"
+            ],
+            [
+                "value" => 225,
+                "title" => "jalan kaki"
+            ],
+            [
+                "value" => 147.2,
+                "title" => "mengajar"
+            ],
+            [
+                "value" => 300,
+                "title" => "bersepeda"
+            ],
+            [
+                "value" => 450,
+                "title" => "mendaki"
+            ],
+            [
+                "value" => 330,
+                "title" => "berkebun"
+            ],
+            [
+                "value" => 350,
+                "title" => "kerja kontruksi"
+            ],
+        ];
 
-                $checkBoxsMap = [];
+        $checkBoxsMap = [];
         foreach ($checkBoxs as $checkbox) {
             $checkBoxsMap[(string)$checkbox['value']] = $checkbox['title'];
         }
@@ -455,7 +511,7 @@ class Home extends BaseController
                 $selectedActivities[] = $checkBoxsMap[$selectedValue];
             }
         }
-        
+
         $data = [
             'nama' => $this->request->getPost('name'),
             'umur' => $usia,
@@ -470,7 +526,7 @@ class Home extends BaseController
         ];
 
         $pasienModel = new Pasien();
-        $pasienModel->update($id,$data);
+        $pasienModel->update($id, $data);
 
         $messageType = $pasienModel ? 'success' : 'error';
         $message = $pasienModel ? 'Data berhasil ditambahkan' : 'Gagal menambahkan data';
