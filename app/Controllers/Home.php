@@ -162,9 +162,9 @@ class Home extends BaseController
         function calculateBMR($gender, $weight, $height, $age)
         {
             if ($gender == 'pria') {
-                return 88.362 + (13.397 * $weight) + (4.799 * $height) - (5.677 * $age);
+                return 65 + (13.7 * $weight) + (5 * $height) - (6.8 * $age);
             } elseif ($gender == 'wanita') {
-                return 447.593 + (9.247 * $weight) + (3.098 * $height) - (4.330 * $age);
+                return 655 + (9.6 * $weight) + (1.8 * $height) - (4.7 * $age);
             } else {
                 return null; // Menangani gender selain male atau female
             }
@@ -179,36 +179,37 @@ class Home extends BaseController
                 return 'a1';
             } elseif ($totalKaloriAktifitasFisik <= 599) {
                 return 'a2';
-            } else {
+            } elseif($totalKaloriAktifitasFisik > 599) {
                 return 'a3';
             }
         }
-        $aktivitas = getValueForConditions($aktifitas_fisik);
+        $aktivitas = getValueForConditions($totalKaloriAktifitasFisik);
 
-        $faktorAktivitas = 1.0;
+        $faktorAktivitas;
 
-        switch (strval($aktivitas)) {
-            case 'a1':
-                if ($gender == 'pria') {
-                    $faktorAktivitas = 1.56;
-                }
+        if ($aktivitas == 'a1') {
+            if ($gender == 'pria') {
+                $faktorAktivitas = 1.3;
+            } else {
+                $faktorAktivitas = 1.3;
+            }
+        } elseif ($aktivitas == 'a2') {
+            if ($gender == 'pria') {
+                $faktorAktivitas = 1.56;
+            } else {
                 $faktorAktivitas = 1.55;
-                break;
-            case 'a2':
-                if ($gender == 'pria') {
-                    $faktorAktivitas = 1.76;
-                }
-                $faktorAktivitas = 1.70;
-                break;
-            case 'a3':
-                if ($gender == 'pria') {
-                    $faktorAktivitas = 2.1;
-                }
-                $faktorAktivitas = 2.0;
-                break;
+            }
+        } elseif ($aktivitas == 'a3') {
+            if ($gender == 'pria') {
+                $faktorAktivitas = 1.76;
+            } else {
+                $faktorAktivitas = 1.78;
+            }
         }
 
+
         $dailyCalories =  $bmr * $faktorAktivitas;
+
 
         function classifyBMI($bmi)
         {
@@ -226,11 +227,12 @@ class Home extends BaseController
             }
         }
 
+
         $status = classifyBMI($bmi);
 
         $checkBoxs = [
             [
-                "value" => 200,
+                "value" => 100,
                 "title" => "duduk"
             ],
             [
@@ -242,12 +244,12 @@ class Home extends BaseController
                 "title" => "mengemudi"
             ],
             [
-                "value" => 34,
+                "value" => 134,
                 "title" => "mengetik"
             ],
             [
-                "value" => 117,
-                "title" => "menyapu"
+                "value" => 55,
+                "title" => "berbaring"
             ],
             [
                 "value" => 147.1,
@@ -266,7 +268,7 @@ class Home extends BaseController
                 "title" => "menyetrika"
             ],
             [
-                "value" => 225,
+                "value" => 255,
                 "title" => "jalan kaki"
             ],
             [
@@ -307,6 +309,8 @@ class Home extends BaseController
             }
         }
 
+        $dateNow = date('Y-m-d');
+
         $data = [
             'nama' => $this->request->getPost('name'),
             'umur' => $usia,
@@ -318,7 +322,8 @@ class Home extends BaseController
             'defisit' => $dailyCalories - 500,
             'surplus' => $dailyCalories + 500,
             'status' => $status,
-            'user_id' => $id
+            'user_id' => $id,
+            'tanggal' => $dateNow
         ];
 
         $pasienModel = new Pasien();
@@ -367,9 +372,9 @@ class Home extends BaseController
         function calculateBMR($gender, $weight, $height, $age)
         {
             if ($gender == 'pria') {
-                return 88.362 + (13.397 * $weight) + (4.799 * $height) - (5.677 * $age);
+                return 65 + (13.7 * $weight) + (5 * $height) - (6.8 * $age);
             } elseif ($gender == 'wanita') {
-                return 447.593 + (9.247 * $weight) + (3.098 * $height) - (4.330 * $age);
+                return 655 + (9.6 * $weight) + (1.8 * $height) - (4.7 * $age);
             } else {
                 return null; // Menangani gender selain male atau female
             }
@@ -384,36 +389,37 @@ class Home extends BaseController
                 return 'a1';
             } elseif ($totalKaloriAktifitasFisik <= 599) {
                 return 'a2';
-            } else {
+            } elseif($totalKaloriAktifitasFisik > 599) {
                 return 'a3';
             }
         }
-        $aktivitas = getValueForConditions($aktifitas_fisik);
+        $aktivitas = getValueForConditions($totalKaloriAktifitasFisik);
 
-        $faktorAktivitas = 1.0;
+        $faktorAktivitas;
 
-        switch (strval($aktivitas)) {
-            case 'a1':
-                if ($gender == 'pria') {
-                    $faktorAktivitas = 1.56;
-                }
+        if ($aktivitas == 'a1') {
+            if ($gender == 'pria') {
+                $faktorAktivitas = 1.3;
+            } else {
+                $faktorAktivitas = 1.3;
+            }
+        } elseif ($aktivitas == 'a2') {
+            if ($gender == 'pria') {
+                $faktorAktivitas = 1.56;
+            } else {
                 $faktorAktivitas = 1.55;
-                break;
-            case 'a2':
-                if ($gender == 'pria') {
-                    $faktorAktivitas = 1.76;
-                }
-                $faktorAktivitas = 1.70;
-                break;
-            case 'a3':
-                if ($gender == 'pria') {
-                    $faktorAktivitas = 2.1;
-                }
-                $faktorAktivitas = 2.0;
-                break;
+            }
+        } elseif ($aktivitas == 'a3') {
+            if ($gender == 'pria') {
+                $faktorAktivitas = 1.76;
+            } else {
+                $faktorAktivitas = 1.78;
+            }
         }
 
+
         $dailyCalories =  $bmr * $faktorAktivitas;
+
 
         function classifyBMI($bmi)
         {
@@ -431,11 +437,12 @@ class Home extends BaseController
             }
         }
 
+
         $status = classifyBMI($bmi);
 
         $checkBoxs = [
             [
-                "value" => 200,
+                "value" => 100,
                 "title" => "duduk"
             ],
             [
@@ -447,12 +454,12 @@ class Home extends BaseController
                 "title" => "mengemudi"
             ],
             [
-                "value" => 34,
+                "value" => 134,
                 "title" => "mengetik"
             ],
             [
-                "value" => 117,
-                "title" => "menyapu"
+                "value" => 55,
+                "title" => "berbaring"
             ],
             [
                 "value" => 147.1,
@@ -471,7 +478,7 @@ class Home extends BaseController
                 "title" => "menyetrika"
             ],
             [
-                "value" => 225,
+                "value" => 255,
                 "title" => "jalan kaki"
             ],
             [
