@@ -312,7 +312,7 @@ class Home extends BaseController
         $dateNow = date('Y-m-d');
 
         $data = [
-            'nama' => $this->request->getPost('name'),
+            'nama' => $_SESSION['admin_username'],
             'umur' => $usia,
             'tinggi_badan' => $tinggiBadan,
             'berat_badan' => $beratBadan,

@@ -33,77 +33,77 @@
         [
             "value" => 200,
             "title" => "duduk",
-            "image" => ""
+            "description" => "duduk sendiri bersama kesepian"
         ],
         [
             "value" => 147,
             "title" => "berdiri",
-            "image" => ""
+            "description" => "berdiri sendiri adalah keharusan"
         ],
         [
             "value" => 118,
             "title" => "mengemudi",
-            "image" => ""
+            "description" => "mengemudi"
         ],
         [
             "value" => 34,
             "title" => "mengetik",
-            "image" => ""
+            "description" => "mengetik namanya di setiap stori wa ku"
         ],
         [
             "value" => 117,
             "title" => "menyapu",
-            "image" => ""
+            "description" => "menyapu semua kenangan bersamanya"
         ],
         [
             "value" => 147.1,
             "title" => "memasak",
-            "image" => ""
+            "description" => "Yang aku masak beras yang matang luka"
         ],
         [
             "value" => 184,
             "title" => "bersikan rumah",
-            "image" => ""
+            "description" => "membersihkan rumah dari semua kenangannya"
         ],
         [
             "value" => 169,
             "title" => "berbelanja",
-            "image" => ""
+            "description" => "berbelanja dengannya dalah favoritku"
         ],
         [
             "value" => 220,
             "title" => "menyetrika",
-            "image" => ""
+            "description" => "menderita"
         ],
         [
             "value" => 225,
             "title" => "jalan kaki",
-            "image" => ""
+            "description" => "jalan menjauh darinya"
         ],
         [
             "value" => 147.2,
             "title" => "mengajar",
-            "image" => ""
+            "description" => "mengajarkan kepada diri sendiri arti luka"
         ],
         [
             "value" => 300,
             "title" => "bersepeda",
-            "image" => ""
+            "description" => "bersepeda mengelilingi jawa tengah"
         ],
         [
             "value" => 450,
             "title" => "mendaki",
-            "image" => ""
+            "description" => "kan ku daki pegunungan himalaya"
         ],
         [
             "value" => 330,
             "title" => "berkebun",
-            "image" => ""
+            "description" => "berkebun memetik kembali semua cinta yang telah ku tanam"
         ],
         [
             "value" => 350,
             "title" => "kerja kontruksi",
-            "image" => ""
+            "description" => "kerja keras membangun apa yang runtuh"
         ],
     ]
     ?>
@@ -151,15 +151,15 @@
                     <input type="text" class="w-full bg-secondary text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400 px-6 pt-[26px] pb-[24px] drop-shadow-lg rounded-lg" placeholder="Nama" value="" name="name" id="name" required>
                 </div> -->
                 <div class="col-span-1 lg:col-span-4 flex items-center gap-x-2 drop-shadow-lg px-6 pt-[26px] pb-[24px] rounded-lg w-full bg-secondary">
-                    <input type="number" class="w-full bg-transparent text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400" placeholder="Umur" value="" name="umur" id="umur" required>
+                    <input type="number" class="w-full bg-transparent text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400" placeholder="Umur" value="" name="umur" id="umur" required min="17" max="45">
                     <p class="text-xs text-third font-bold">Tahun</p>
                 </div>
                 <div class="col-span-1 lg:col-span-4 flex items-center gap-x-2 drop-shadow-lg px-6 pt-[26px] pb-[24px] rounded-lg w-full bg-secondary">
-                    <input type="number" class="w-full bg-transparent text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400" placeholder="Tinggi Badan" value="" name="tinggi_badan" id="tinggi_badan" required>
+                    <input type="number" class="w-full bg-transparent text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400" placeholder="Tinggi Badan" value="" name="tinggi_badan" id="tinggi_badan" required min="140">
                     <p class="text-xs text-third font-bold">Cm</p>
                 </div>
                 <div class="col-span-1 lg:col-span-6 flex items-center gap-x-2 drop-shadow-lg px-6 pt-[26px] pb-[24px] rounded-lg w-full bg-secondary">
-                    <input type="number" class="w-full bg-transparent text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400" placeholder="Berat Badan" value="" name="berat_badan" id="berat_badan" required>
+                    <input type="number" class="w-full bg-transparent text-neutral-700 font-bold outline-none placeholder:font-normal placeholder:text-neutral-400" placeholder="Berat Badan" value="" name="berat_badan" id="berat_badan" required min="40">
                     <p class="text-xs text-third font-bold">Kg</p>
                 </div>
                 <div class="flex w-full col-span-1 lg:col-span-6 items-center drop-shadow-lg bg-secondary rounded-md px-6">
@@ -174,9 +174,10 @@
                 <div class="col-span-1 lg:col-span-12 grid grid-cols-1 lg:grid-cols-8 bg-secondary px-[23px] py-[25px] rounded-lg drop-shadow-lg gap-y-8">
 
                     <?php foreach ($checkBoxs as $key => $value) : ?>
-                        <div class="flex items-center col-span-2 gap-2">
+                        <div class="flex items-center col-span-2 gap-2 group">
                             <input type="checkbox" name="aktifitas_fisik[]" class=" accent-primary cursor-pointer border-emerald-500 activity" value="<?php echo $value["value"] ?>" id="<?php echo "label-" . $value["value"] ?>">
-                            <label for="<?php echo "label-" . $value["value"] ?>" class="text-neutral-700 font-semibold capitalize cursor-pointer"><?php echo $value["title"] ?> (<?= $value["value"] ?> Kalori)</label>
+                            <label class="text-neutral-700 font-semibold capitalize cursor-pointer modal-open"><?php echo $value["title"] ?> (<?= $value["value"] ?> Kalori)</label>
+                            <div class="description hidden text-sm text-neutral-500 mt-1"><?php echo $value["description"] ?></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -187,6 +188,12 @@
                     </button>
                 </div>
             </form>
+            <div id="myModal" class="modal hidden fixed z-10 inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center">
+                <div class="modal-content bg-white p-4 rounded shadow-lg">
+                    <span class="modal-close absolute top-0 right-0 cursor-pointer p-2">&times;</span>
+                    <div id="modalDescription" class="text-sm text-neutral-700"></div>
+                </div>
+            </div>
 
             <!-- my_view.php -->
             <form action="<?= base_url('/search') ?>" method="post" class="mt-4 mb-8">
@@ -360,6 +367,36 @@
             })
             .catch(error => console.error('Error:', error));
     }
+
+    function showModal(description) {
+        const modal = document.getElementById('myModal');
+        const modalDescription = document.getElementById('modalDescription');
+        modalDescription.textContent = description;
+        modal.classList.remove('hidden');
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        const modal = document.getElementById('myModal');
+        modal.classList.add('hidden');
+    }
+
+    // Menambahkan event listener ke setiap label untuk menampilkan deskripsi saat diklik
+    document.querySelectorAll('.modal-open').forEach(item => {
+        item.addEventListener('click', event => {
+            const description = item.nextElementSibling.textContent;
+            showModal(description);
+        });
+    });
+
+    // Menutup modal saat tombol close ditekan
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+
+    document.getElementById('myModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeModal();
+        }
+    });
 </script>
 
 </html>
