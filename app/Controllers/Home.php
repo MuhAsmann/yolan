@@ -179,7 +179,7 @@ class Home extends BaseController
                 return 'a1';
             } elseif ($totalKaloriAktifitasFisik <= 599) {
                 return 'a2';
-            } elseif($totalKaloriAktifitasFisik > 599) {
+            } elseif ($totalKaloriAktifitasFisik > 599) {
                 return 'a3';
             }
         }
@@ -389,7 +389,7 @@ class Home extends BaseController
                 return 'a1';
             } elseif ($totalKaloriAktifitasFisik <= 599) {
                 return 'a2';
-            } elseif($totalKaloriAktifitasFisik > 599) {
+            } elseif ($totalKaloriAktifitasFisik > 599) {
                 return 'a3';
             }
         }
@@ -541,5 +541,10 @@ class Home extends BaseController
         session()->setFlashdata('message_type', $messageType);
 
         return redirect()->to(base_url('/'));
+    }
+
+    public function rekomendasi()
+    {
+        return view('rekomendasi');
     }
 }

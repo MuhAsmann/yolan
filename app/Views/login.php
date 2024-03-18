@@ -18,7 +18,13 @@
 
 <!-- [ auth-signin ] start -->
 <div class="bg-primary h-screen flex justify-center items-center px-2 ">
-    <div class="px-2">
+    <div class="px-2 bg-white flex relative">
+        <div class="absolute top-0 -left-[108px] bg-neutral-200 px-6 py-6"><img src="/assets/alma-ata.png" width="60"></div>
+
+        <div class="py-6 px-10 flex flex-col align-items justify-center">
+            <h2 class="text-emerald-400 text-3xl font-bold font-['Plus Jakarta Sans']">Sistem Pakar Perhitungan Kalori</h2>
+            <img src="/assets/kalori.jpg" width="500">
+        </div>
         <form id="loginForm" action="/login" method="post" class="bg-[#F5FCFA] overflow-hidden h-auto w-auto p-6 md:min-h-[400px] md:w-[400px] rounded-[8px] flex flex-col items-center justify-center gap-y-12">
             <h2 class="text-emerald-400 text-4xl font-bold font-['Plus Jakarta Sans']">Login</h2>
             <?php $message = session()->getFlashdata('message'); ?>
@@ -59,6 +65,7 @@
 <script>
     $(function() {
         $("#login").click(function(e) {
+            e.preventDefault();
             var formData = $('#loginForm').serialize();
             $.ajax({
                 type: "POST",
@@ -66,7 +73,7 @@
                 data: formData,
                 dataType: "JSON",
                 success: function(response) {
-                    localStorage.setItem('user_id',response.admin_user_id)
+                    localStorage.setItem('user_id', response.admin_user_id)
                     window.location.href = '/'
                 }
             });
